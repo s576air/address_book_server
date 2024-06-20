@@ -260,13 +260,12 @@ let html = format!(r#"
     </style>
     <script>
         function searchProfile(profile, text) {{
+            if (text === '') {{ return true; }}
             let mainInfo = profile.children[0].children[1].children;
             let home = profile.children[5];
             if (
                 mainInfo[0].textContent.includes(text) ||
-                mainInfo[1].textContent.includes(text) ||
-                mainInfo[2].textContent.includes(text) ||
-                home.textContent.includes(text)
+                mainInfo[1].textContent.includes(text)
             ) {{
                 return true;
             }}

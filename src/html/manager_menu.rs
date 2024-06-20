@@ -234,7 +234,8 @@ let html = format!(r#"
     </style>
     <script>
         function searchProfile(profile, text) {{
-            let mainInfo = profile.children[0].children[1].children;
+            if (text === '') {{ return true; }}
+            let mainInfo = profile.children[0].children[0].children[1].children;
             if (
                 mainInfo[0].children[0].value.includes(text) ||
                 mainInfo[1].children[0].value.includes(text)
