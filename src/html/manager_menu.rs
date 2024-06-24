@@ -196,7 +196,9 @@ let html = format!(r#"
             display: flex;
         }}
         .profile-img {{
-            width: 120px;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }}
         .main-info {{
             font-size: 20px;
@@ -227,6 +229,8 @@ let html = format!(r#"
         .dropzone {{
             border: 2px dashed #cccccc;
             transition: border-color 0.3s ease;
+            width: 120px;
+            height: 120px;
         }}
         .highlight {{
             border-color: #666666;

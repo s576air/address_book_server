@@ -82,7 +82,7 @@ impl Profile {
 format!(r#"
 <div class="profile">
     <div class="profile-top">
-        <img src="image?{image_path}" alt="사진" class="profile-img">
+        <div class="grid-img"><img src="image?{image_path}" alt="사진" class="profile-img"></div>
         <div>
             <div class="main-info">성명&#x3000;&#x3000;   {name}</div>
             <div class="main-info">직장명&#x3000;   {business}</div>
@@ -247,8 +247,9 @@ let html = format!(r#"
             display: flex;
         }}
         .profile-img {{
-            margin: 0px; /*더미 정보*/
-            width: 120px;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }}
         .main-info {{
             font-size: 20px;
@@ -256,6 +257,10 @@ let html = format!(r#"
         }}
         .my-hr {{
             border-top: 1px solid rgb(13, 71, 161);
+        }}
+        .grid-img {{
+            width: 120px;
+            height: 120px;
         }}
     </style>
     <script>
