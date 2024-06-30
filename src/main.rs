@@ -85,8 +85,18 @@ struct Data {
 }
 
 async fn post_handler(Form(data): Form<Data>) -> Result<Html<String>, StatusCode> {
-    let body = data.data;
-    if body.chars().any(|char| matches!(char, '<' | '>' | '"' | '\'' | '&')) { return Err(StatusCode::BAD_REQUEST) }
+    let mut body = String::new();
+    for c in data.data.chars() {
+        match c {
+            '&' => body.push_str("&amp;"),
+            '<' => body.push_str("&lt;"),
+            '>' => body.push_str("&gt;"),
+            '\'' => body.push_str("&quot;"),
+            '"' => body.push_str("&#39;"),
+            '\\' => body.push_str("&#92;"),
+            _ => body.push(c),
+        }
+    }
     let mut body = body.split("#$#");
 
     let mut htmls = Htmls::get()?;
